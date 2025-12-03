@@ -1,0 +1,31 @@
+{
+  "tasks": {
+    "dev": "deno run -A server.js",
+    "build": "deno run -A npm:vite build"
+  },
+  "compilerOptions": {
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
+    "jsxImportSourceTypes": "@types/react"
+  },
+  "imports": {
+    "@deno/vite-plugin": "npm:@deno/vite-plugin@^1.0.5",
+    "@inertiajs/react": "npm:@inertiajs/react@^2.2.19",
+    "@tailwindcss/vite": "npm:@tailwindcss/vite@^4.1.17",
+    "@types/react": "npm:@types/react@^19.1.13",
+    "@types/react-dom": "npm:@types/react-dom@^19.1.9",
+    "@vitejs/plugin-react": "npm:@vitejs/plugin-react@^5.0.2",
+    "babel-plugin-react-compiler": "npm:babel-plugin-react-compiler@^1.0.0",
+    "express": "npm:express@^5.1.0",
+    "minimist": "npm:minimist@^1.2.8",
+    "prettier": "npm:prettier@^3.7.3",
+    "prettier-plugin-tailwindcss": "npm:prettier-plugin-tailwindcss@^0.7.1",
+    "react": "npm:react@^19.1.1",
+    "react-dom": "npm:react-dom@^19.1.1",
+    "server": "https://raw.githubusercontent.com/Inertia4J/inertia4j-spring-example/refs/heads/main/src/main/front/server.js",
+    "tailwindcss": "npm:tailwindcss@^4.1.17",
+    "vite": "npm:rolldown-vite@latest"
+  },
+  "nodeModulesDir": "auto"
+}
