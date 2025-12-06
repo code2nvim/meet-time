@@ -1,4 +1,8 @@
-CREATE TABLE IF NOT EXISTS users (
-    id      serial  primary key,
-    name    text
+DROP TABLE IF EXISTS accounts;
+
+CREATE TABLE IF NOT EXISTS accounts (
+    id          serial  primary key,
+    role        varchar(80),
+    username    varchar(80),
+    password    varchar(255)
 );
