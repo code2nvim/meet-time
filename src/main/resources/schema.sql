@@ -1,5 +1,3 @@
-DROP TABLE IF EXISTS accounts;
-
 CREATE TABLE IF NOT EXISTS accounts (
     id          serial  primary key,
     role        varchar(80),
