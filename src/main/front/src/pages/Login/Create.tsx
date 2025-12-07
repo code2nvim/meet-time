@@ -1,16 +1,16 @@
 import { Form, Link } from "@inertiajs/react";
 
-export default function Index() {
+export default function Create() {
   return (
     <>
       <section className="w-full p-2">
         <Link href="/" className="border">
           Back to Home
         </Link>
-        <h1 className="text-center text-xl">Log in to your account</h1>
+        <h1 className="text-center text-xl">Create an account</h1>
       </section>
       <Form
-        action="/login"
+        action="/login/create"
         method="post"
         className="flex flex-col items-center gap-1.5"
       >
@@ -31,14 +31,8 @@ export default function Index() {
           />
         </span>
         <button type="submit" className="border bg-teal-300 p-0.5">
-          Log in
+          Create
         </button>
-        <Link
-          href="/login/create"
-          className="m-4 border bg-teal-300 p-1 text-sm"
-        >
-          Or... Create an account
-        </Link>
       </Form>
     </>
   );

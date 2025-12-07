@@ -1,6 +1,5 @@
 package com.example.meet;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,15 +11,12 @@ import com.example.meet.account.AccountRepository;
 @Configuration
 public class Initialize {
 
-    @Autowired
-    PasswordEncoder passwordEncoder;
-
     @Bean
-    CommandLineRunner root(AccountRepository accountRepository) {
+    CommandLineRunner root(AccountRepository accountRepository, PasswordEncoder encoder) {
         return args -> {
             if (accountRepository.findByUsername("root").isEmpty()) {
                 var account = new Account(
-                        null, "root", "root", passwordEncoder.encode("root"));
+                        null, "root", "root", encoder.encode("root"));
                 accountRepository.save(account);
             }
         };

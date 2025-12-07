@@ -6,8 +6,8 @@ interface IndexProps {
 
 export default function Index({ user }: IndexProps) {
   return (
-    <div className="gap-w flex flex-col items-center gap-1 p-4">
-      <h2>User: {user || "Not signed in..."}</h2>
+    <div className="flex flex-col items-center gap-1 p-4">
+      <h2>User: {user || "No account logged in..."}</h2>
       {user
         ? (
           <Form action="/logout" method="post" className="contents">

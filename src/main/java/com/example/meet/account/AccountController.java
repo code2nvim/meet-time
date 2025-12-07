@@ -1,6 +1,7 @@
 package com.example.meet.account;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.Map;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,14 +16,17 @@ import jakarta.servlet.http.HttpSession;
 @RestController
 public class AccountController {
 
-    @Autowired
-    private Inertia inertia;
+    private final Inertia inertia;
 
-    @Autowired
-    private AccountService accountSservice;
+    private final AccountService accountService;
+
+    AccountController(Inertia inertia, AccountService service) {
+        this.inertia = inertia;
+        this.accountService = service;
+    }
 
     @GetMapping("/login")
-    ResponseEntity<String> index(HttpSession session) {
+    ResponseEntity<String> loginPage(HttpSession session) {
         if (session.getAttribute("user") != null) {
             return inertia.redirect("/");
         }
@@ -31,21 +35,46 @@ public class AccountController {
 
     @PostMapping("/login")
     ResponseEntity<String> login(@RequestBody Account account, HttpSession session) {
-        var real = accountSservice.verifyLogin(account)
+        var real = accountService.verifyLogin(account)
                 .orElseThrow(() -> new ResponseStatusException(
                         HttpStatus.UNAUTHORIZED, "Wrong username or password!"));
-
-        session.setAttribute("role", real.role());
         session.setAttribute("user", real.username());
-
         return inertia.redirect("/");
+    }
+
+    @GetMapping("/login/create")
+    ResponseEntity<String> createPage() {
+        return inertia.render("Login/Create");
+    }
+
+    @PostMapping("/login/create")
+    ResponseEntity<String> create(@RequestBody Account account) {
+        if (!accountService.addPendingAccount(account)) {
+            throw new ResponseStatusException(
+                    HttpStatus.CONFLICT, "Account already exists!");
+        }
+        return inertia.redirect("/login/pending");
+    }
+
+    @GetMapping("/login/pending")
+    ResponseEntity<String> pendingPage(HttpSession session) {
+        var user = session.getAttribute("user");
+        if (user == null || !user.equals("root")) {
+            return inertia.render("Login/Wait");
+        }
+        var pending = accountService.getPendingAccounts();
+        return inertia.render("Login/Pending", Map.of("pending", pending));
+    }
+
+    @PostMapping("/login/pending")
+    ResponseEntity<String> save(@RequestBody Account account) {
+        accountService.saveAccount(account);
+        return inertia.redirect("/login/pending");
     }
 
     @PostMapping("/logout")
     ResponseEntity<String> logout(HttpSession session) {
-        session.removeAttribute("role");
         session.removeAttribute("user");
-
         return inertia.redirect("/");
     }
 
