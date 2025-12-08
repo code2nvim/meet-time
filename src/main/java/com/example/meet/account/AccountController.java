@@ -66,9 +66,23 @@ public class AccountController {
         return inertia.render("Login/Pending", Map.of("pending", pending));
     }
 
-    @PostMapping("/login/pending")
-    ResponseEntity<String> save(@RequestBody Account account) {
-        accountService.saveAccount(account);
+    @PostMapping("/login/pending/accept")
+    ResponseEntity<String> save(@RequestBody Account account, HttpSession session) {
+        var user = session.getAttribute("user");
+        if (user == null || !user.equals("root")) {
+            return inertia.redirect("/login/pending");
+        }
+        accountService.saveAccount(account.username());
+        return inertia.redirect("/login/pending");
+    }
+
+    @PostMapping("/login/pending/deny")
+    ResponseEntity<String> remove(@RequestBody Account account, HttpSession session) {
+        var user = session.getAttribute("user");
+        if (user == null || !user.equals("root")) {
+            return inertia.redirect("/login/pending");
+        }
+        accountService.removePendingAccount(account.username());
         return inertia.redirect("/login/pending");
     }
 

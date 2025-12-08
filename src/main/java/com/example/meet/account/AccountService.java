@@ -43,12 +43,15 @@ public class AccountService {
         return true;
     }
 
-    void deletePendingAccount(int index) {
-        pendingAccounts.remove(index);
+    void removePendingAccount(String username) {
+        pendingAccounts.removeIf(account -> account.username().equals(username));
     }
 
-    void saveAccount(Account account) {
-        accountRepository.save(account);
+    void saveAccount(String username) {
+        accountRepository.save(pendingAccounts.stream()
+                .filter(account -> account.username().equals(username))
+                .findAny().get());
+        this.removePendingAccount(username);
     }
 
 }
