@@ -15,9 +15,8 @@ public class Initialize {
     CommandLineRunner root(AccountRepository accountRepository, PasswordEncoder encoder) {
         return args -> {
             if (accountRepository.findByUsername("root").isEmpty()) {
-                var account = new Account(
-                        null, "root", "root", encoder.encode("root"));
-                accountRepository.save(account);
+                accountRepository.save(new Account(
+                        null, "root", encoder.encode("root")));
             }
         };
     }

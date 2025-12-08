@@ -38,8 +38,8 @@ public class AccountService {
         if (inRepo || inPending) {
             return false;
         }
-        pendingAccounts.add(new Account(null, "member",
-                account.username(), passwordEncoder.encode(account.password())));
+        pendingAccounts.add(new Account(
+                null, account.username(), passwordEncoder.encode(account.password())));
         return true;
     }
 
