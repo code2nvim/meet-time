@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.example.meet.utils.Verify;
+
 import io.github.inertia4j.spring.Inertia;
 import jakarta.servlet.http.HttpSession;
 
@@ -27,7 +29,7 @@ public class AccountController {
 
     @GetMapping("/login")
     ResponseEntity<String> loginPage(HttpSession session) {
-        if (session.getAttribute("user") != null) {
+        if (Verify.validUser(session).isPresent()) {
             return inertia.redirect("/");
         }
         return inertia.render("Login/Index");
@@ -58,8 +60,7 @@ public class AccountController {
 
     @GetMapping("/login/pending")
     ResponseEntity<String> pendingPage(HttpSession session) {
-        var user = session.getAttribute("user");
-        if (user == null || !user.equals("root")) {
+        if (Verify.rootUser(session).isEmpty()) {
             return inertia.render("Login/Wait");
         }
         var pending = accountService.getPendingAccounts();
@@ -68,8 +69,7 @@ public class AccountController {
 
     @PostMapping("/login/pending/accept")
     ResponseEntity<String> save(@RequestBody Account account, HttpSession session) {
-        var user = session.getAttribute("user");
-        if (user == null || !user.equals("root")) {
+        if (Verify.rootUser(session).isEmpty()) {
             return inertia.redirect("/login/pending");
         }
         accountService.saveAccount(account.username());
@@ -78,8 +78,7 @@ public class AccountController {
 
     @PostMapping("/login/pending/deny")
     ResponseEntity<String> remove(@RequestBody Account account, HttpSession session) {
-        var user = session.getAttribute("user");
-        if (user == null || !user.equals("root")) {
+        if (Verify.rootUser(session).isEmpty()) {
             return inertia.redirect("/login/pending");
         }
         accountService.removePendingAccount(account.username());
