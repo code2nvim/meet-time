@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useUsername } from "../../hooks/chat.ts";
-import { Message } from "../../types/Message.ts";
+import { useUsername } from "../../hooks/account.ts";
+import { Message } from "../../types/message.ts";
 import { InputBox } from "./InputBox.tsx";
 
 export function useGetMessages(): Message[] {
@@ -27,7 +27,7 @@ export function ChatRoom() {
   const { username } = useUsername();
 
   return (
-    <section className="flex gap-1 grow flex-col">
+    <section className="flex grow flex-col gap-1">
       <ul className="size-full gap-4 overflow-auto rounded-md bg-teal-500 p-4">
         {messages.map((message, idx) => (
           <li

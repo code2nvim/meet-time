@@ -1,5 +1,5 @@
 import { Link, router } from "@inertiajs/react";
-import { Account } from "../../types/Account.ts";
+import { Account } from "../../types/account.ts";
 
 interface PendingProps {
   pending: Account[];
