@@ -56,22 +56,23 @@ function Week({ start, month }: WeekProps) {
     <tr className="grid grid-cols-7">
       {dates.map((date, idx) => (
         <>
-          {(start.getMonth() === month ||
-            end.getMonth() === month) &&
-            (
-              <td
-                key={idx}
-                className="flex aspect-4/3 items-center justify-center border p-2"
-              >
-                {date.getMonth() === month && (
-                  <DayButton date={date}>
-                    {`${date.getMonth() + 1}/${
-                      date.getDate().toString().padStart(2, "0")
-                    }`}
-                  </DayButton>
-                )}
-              </td>
-            )}
+          {(start.getMonth() === month || end.getMonth() === month) && (
+            <td
+              key={idx}
+              className="flex aspect-4/3 items-center justify-center border p-2"
+            >
+              {date.getMonth() === month && (
+                <DayButton date={date}>
+                  {`${(date.getMonth() + 1).toString().padStart(2, "0")}/${
+                    date
+                      .getDate()
+                      .toString()
+                      .padStart(2, "0")
+                  }`}
+                </DayButton>
+              )}
+            </td>
+          )}
         </>
       ))}
     </tr>
