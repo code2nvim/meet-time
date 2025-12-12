@@ -19,8 +19,11 @@ public class PlanController {
 
     private final Inertia inertia;
 
-    PlanController(Inertia inertia) {
+    private final PlanService planService;
+
+    PlanController(Inertia inertia, PlanService planService) {
         this.inertia = inertia;
+        this.planService = planService;
     }
 
     @GetMapping("/plan")
@@ -40,7 +43,9 @@ public class PlanController {
         }
         var date = LocalDate.of(year, month, 1);
         var localDate = date.format(DateTimeFormatter.ISO_LOCAL_DATE);
-        return inertia.render("Plan/Index", Map.of("localDate", localDate));
+        var dateList = planService.planListInMonth(year, month);
+        return inertia.render("Plan/Index", Map.of(
+                "localDate", localDate, "dateList", dateList));
     }
 
     @GetMapping("/plan/{year}/{month}/{day}")
@@ -49,9 +54,8 @@ public class PlanController {
         if (Verify.validUser(session).isEmpty()) {
             return inertia.redirect("/");
         }
-        var date = LocalDate.of(year, month, 1);
-        var localDate = date.format(DateTimeFormatter.ISO_LOCAL_DATE);
-        return inertia.render("Plan/Show", Map.of("localDate", localDate));
+        var dateList = planService.planListInMonth(year, month);
+        return inertia.render("Plan/Show", Map.of("dateList", dateList));
     }
 
 }

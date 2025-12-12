@@ -1,19 +1,26 @@
 import { Link } from "@inertiajs/react";
-import { ReactElement } from "react";
+import { ReactElement, useEffect } from "react";
 import { Calendar } from "../../components/Plan/Calendar.tsx";
 import { formatMonth } from "../../utils/format.ts";
+import { useDateList } from "../../hooks/plan.ts";
 
 interface IndexProps {
   localDate: string;
+  dateList: string[];
   children: ReactElement;
 }
 
-export default function Index({ localDate, children }: IndexProps) {
+export default function Index({ localDate, dateList, children }: IndexProps) {
   const date = new Date(localDate);
   const start = new Date(date.getFullYear(), date.getMonth(), 1);
 
+  const { setDateList } = useDateList();
+  useEffect(() => {
+    setDateList(dateList.map((str) => new Date(str)));
+  }, []);
+
   return (
-    <div className="flex inset-0 flex-col items-center gap-1 p-1">
+    <div className="inset-0 flex flex-col items-center gap-1 p-1">
       <SelectMonth date={date} />
       <Calendar start={start} />
       {children}
@@ -40,9 +47,7 @@ function SelectMonth({ date }: SelectMonthProps) {
       <Link type="button" href={prevRoute} className="rounded-md border-2 p-1">
         prev
       </Link>
-      <h2 className="font-bold">
-        {formatMonth(date)}
-      </h2>
+      <h2 className="font-bold">{formatMonth(date)}</h2>
       <Link type="button" href={nextRoute} className="rounded-md border-2 p-1">
         next
       </Link>

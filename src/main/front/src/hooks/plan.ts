@@ -1,9 +1,9 @@
 import { atom, useAtom } from "jotai";
 
-const planListAtom = atom<Date[]>();
+const dateListAtom = atom([] as Date[]);
 
-export function useUsername() {
-  const [plan, setPlanList] = useAtom(planListAtom);
+export function useDateList() {
+  const [dateList, setDateList] = useAtom(dateListAtom);
 
-  return { plan, setPlanList };
+  return { dateList, setDateList };
 }
