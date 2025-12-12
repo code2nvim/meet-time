@@ -1,4 +1,5 @@
-import { DayButton } from "./DayButton.tsx";
+import { Fragment } from "react";
+import { DayLink } from "./DayLink.tsx";
 
 interface CalendarProps {
   start: Date;
@@ -19,10 +20,12 @@ export function Calendar({ start }: CalendarProps) {
 
   return (
     <table className="text-4xl">
-      <thead className="grid grid-cols-7 p-2 text-center">
-        {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((date) => (
-          <th key={date}>{date}</th>
-        ))}
+      <thead>
+        <tr className="grid grid-cols-7 p-2 text-center">
+          {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
+            <th key={day}>{day}</th>
+          ))}
+        </tr>
       </thead>
       <tbody>
         {weeks.map((start, idx) => (
@@ -55,25 +58,13 @@ function Week({ start, month }: WeekProps) {
   return (
     <tr className="grid grid-cols-7">
       {dates.map((date, idx) => (
-        <>
+        <Fragment key={idx}>
           {(start.getMonth() === month || end.getMonth() === month) && (
-            <td
-              key={idx}
-              className="flex aspect-4/3 w-32 items-center justify-center border p-2"
-            >
-              {date.getMonth() === month && (
-                <DayButton date={date}>
-                  {`${(date.getMonth() + 1).toString().padStart(2, "0")}/${
-                    date
-                      .getDate()
-                      .toString()
-                      .padStart(2, "0")
-                  }`}
-                </DayButton>
-              )}
+            <td className="flex aspect-4/3 w-32 items-center justify-center border p-2">
+              {date.getMonth() === month && <DayLink date={date} />}
             </td>
           )}
-        </>
+        </Fragment>
       ))}
     </tr>
   );

@@ -1,11 +1,9 @@
 import { atom, useAtom } from "jotai";
 
-const hoverAtom = atom(false);
+const planListAtom = atom<Date[]>();
 
-export function useHover() {
-  const [hover, setHover] = useAtom(hoverAtom);
+export function useUsername() {
+  const [plan, setPlanList] = useAtom(planListAtom);
 
-  const toggle = () => setHover((hover) => !hover);
-
-  return { hover, toggle };
+  return { plan, setPlanList };
 }

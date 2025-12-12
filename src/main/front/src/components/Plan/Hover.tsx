@@ -1,8 +1,4 @@
-import { useHover } from "../../hooks/plan.ts";
-
 export function Hover() {
-  const { hover, toggle } = useHover();
-
   return (
     <>
       {hover && (

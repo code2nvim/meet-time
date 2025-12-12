@@ -1,6 +1,12 @@
 export interface Plan {
-  host: string;
-  members: string[];
+  planId: number;
+  title: string;
+  meetAt: string;
   meetTime: Date;
   desription: string;
+}
+
+export interface Participant {
+  planId: number;
+  participant: string;
 }

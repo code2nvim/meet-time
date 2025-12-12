@@ -1,7 +1,7 @@
 package com.example.meet.plan;
 
 import java.time.LocalDate;
-import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
@@ -25,8 +25,7 @@ public class PlanController {
 
     @GetMapping("/plan")
     ResponseEntity<String> planRedirect(HttpSession session) {
-        var user = Verify.validUser(session);
-        if (user.isEmpty()) {
+        if (Verify.validUser(session).isEmpty()) {
             return inertia.redirect("/");
         }
         var now = LocalDate.now();
@@ -34,17 +33,25 @@ public class PlanController {
     }
 
     @GetMapping("/plan/{year}/{month}")
-    ResponseEntity<String> planPage(HttpSession session,
+    ResponseEntity<String> calendarPage(HttpSession session,
             @PathVariable int year, @PathVariable int month) {
-        var user = Verify.validUser(session);
-        if (user.isEmpty()) {
+        if (Verify.validUser(session).isEmpty()) {
             return inertia.redirect("/");
         }
-        var timestamp = LocalDate.of(year, month, 1)
-                .atStartOfDay(ZoneId.systemDefault())
-                .toInstant()
-                .toEpochMilli();
-        return inertia.render("Plan/Index", Map.of("timestamp", timestamp));
+        var date = LocalDate.of(year, month, 1);
+        var localDate = date.format(DateTimeFormatter.ISO_LOCAL_DATE);
+        return inertia.render("Plan/Index", Map.of("localDate", localDate));
+    }
+
+    @GetMapping("/plan/{year}/{month}/{day}")
+    ResponseEntity<String> planPage(HttpSession session,
+            @PathVariable int year, @PathVariable int month, @PathVariable int day) {
+        if (Verify.validUser(session).isEmpty()) {
+            return inertia.redirect("/");
+        }
+        var date = LocalDate.of(year, month, 1);
+        var localDate = date.format(DateTimeFormatter.ISO_LOCAL_DATE);
+        return inertia.render("Plan/Show", Map.of("localDate", localDate));
     }
 
 }

@@ -40,7 +40,10 @@ interface RouteLinkProps {
 
 function RouteLink({ route, children }: RouteLinkProps) {
   return (
-    <Link href={route} className="grow rounded-md border-2 flex text-2xl text-gray-700 justify-center items-center">
+    <Link
+      href={route}
+      className="flex grow items-center justify-center rounded-md border-2 text-2xl text-gray-700"
+    >
       {children}
     </Link>
   );
