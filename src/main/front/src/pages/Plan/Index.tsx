@@ -35,11 +35,11 @@ function SelectMonth({ date }: SelectMonthProps) {
 
   return (
     <nav className="flex items-center gap-8 p-4 text-2xl">
-      <Link type="button" href={prevRoute} className="border-2 p-1">
+      <Link type="button" href={prevRoute} className="border-2 rounded-md p-1">
         prev
       </Link>
       <h2 className="font-bold">{date.getMonth() + 1}</h2>
-      <Link type="button" href={nextRoute} className="border-2 p-1">
+      <Link type="button" href={nextRoute} className="border-2 rounded-md p-1">
         next
       </Link>
     </nav>
