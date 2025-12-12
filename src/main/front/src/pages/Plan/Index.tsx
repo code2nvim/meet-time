@@ -1,27 +1,18 @@
-import { useState } from "react";
+import { Link } from "@inertiajs/react";
 import { Calendar } from "../../components/Plan/Calendar.tsx";
 import { Hover } from "../../components/Plan/Hover.tsx";
 
-export default function Index() {
-  const [date, setDate] = useState(new Date());
+interface IndexProps {
+  timestamp: number;
+}
 
-  const prevMonth = () => {
-    const month = new Date(date);
-    month.setMonth(month.getMonth() - 1);
-    setDate(month);
-  };
-
-  const nextMonth = () => {
-    const month = new Date(date);
-    month.setMonth(month.getMonth() + 1);
-    setDate(month);
-  };
-
+export default function Index({ timestamp }: IndexProps) {
+  const date = new Date(timestamp);
   const start = new Date(date.getFullYear(), date.getMonth(), 1);
 
   return (
     <div className="flex size-full flex-col items-center gap-1 p-1">
-      <SelectMonth date={date} prev={prevMonth} next={nextMonth} />
+      <SelectMonth date={date} />
       <Calendar start={start} />
       <Hover />
     </div>
@@ -30,20 +21,27 @@ export default function Index() {
 
 interface SelectMonthProps {
   date: Date;
-  prev: () => void;
-  next: () => void;
 }
 
-function SelectMonth({ date, prev, next }: SelectMonthProps) {
+function SelectMonth({ date }: SelectMonthProps) {
+  const prev = new Date(date);
+  const next = new Date(date);
+
+  prev.setMonth(date.getMonth() - 1);
+  next.setMonth(date.getMonth() + 1);
+
+  const prevRoute = "/plan/" + prev.getFullYear() + "/" + (prev.getMonth() + 1);
+  const nextRoute = "/plan/" + next.getFullYear() + "/" + (next.getMonth() + 1);
+
   return (
     <nav className="flex items-center gap-8 p-4 text-2xl">
-      <button type="button" onClick={prev} className="border-2 p-1">
+      <Link type="button" href={prevRoute} className="border-2 p-1">
         prev
-      </button>
+      </Link>
       <h2 className="font-bold">{date.getMonth() + 1}</h2>
-      <button type="button" onClick={next} className="border-2 p-1">
+      <Link type="button" href={nextRoute} className="border-2 p-1">
         next
-      </button>
+      </Link>
     </nav>
   );
 }

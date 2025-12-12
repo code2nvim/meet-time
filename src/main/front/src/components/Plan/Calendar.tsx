@@ -59,7 +59,7 @@ function Week({ start, month }: WeekProps) {
           {(start.getMonth() === month || end.getMonth() === month) && (
             <td
               key={idx}
-              className="flex aspect-4/3 items-center justify-center border p-2"
+              className="flex aspect-4/3 w-32 items-center justify-center border p-2"
             >
               {date.getMonth() === month && (
                 <DayButton date={date}>

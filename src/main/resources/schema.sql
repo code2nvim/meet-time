@@ -10,3 +10,17 @@ CREATE TABLE IF NOT EXISTS messages (
     sent_at     timestamp,
     content     text
 );
+
+CREATE TABLE IF NOT EXISTS plans (
+    id          serial  primary key,
+    title       varchar(80),
+    meet_at     varchar(80),
+    meet_time   timestamp,
+    description text
+);
+
+CREATE TABLE IF NOT EXISTS plan_participants (
+    id          serial  primary key,
+    plan_id     integer,
+    participant varchar(80)
+);
