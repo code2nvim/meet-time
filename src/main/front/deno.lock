@@ -2,20 +2,20 @@
   "version": "5",
   "specifiers": {
     "npm:@deno/vite-plugin@^1.0.5": "1.0.5_vite@6.4.1__picomatch@4.0.3",
-    "npm:@inertiajs/react@^2.2.19": "2.2.19_react@19.2.0_react-dom@19.2.0__react@19.2.0",
+    "npm:@inertiajs/react@^2.2.19": "2.2.19_react@19.2.3_react-dom@19.2.3__react@19.2.3",
     "npm:@tailwindcss/vite@^4.1.17": "4.1.17_vite@6.4.1__picomatch@4.0.3",
     "npm:@types/react-dom@^19.1.9": "19.2.3_@types+react@19.2.7",
     "npm:@types/react@^19.1.13": "19.2.7",
     "npm:@vitejs/plugin-react@^5.0.2": "5.1.1_vite@6.4.1__picomatch@4.0.3_@babel+core@7.28.5",
     "npm:babel-plugin-react-compiler@1": "1.0.0",
     "npm:express@^5.1.0": "5.1.0",
-    "npm:jotai@^2.16.0": "2.16.0_@types+react@19.2.7_react@19.2.0",
+    "npm:jotai@^2.16.0": "2.16.0_@types+react@19.2.7_react@19.2.3",
     "npm:minimist@^1.2.8": "1.2.8",
     "npm:prettier-plugin-tailwindcss@~0.7.1": "0.7.1_prettier@3.7.3",
     "npm:prettier@*": "3.7.3",
     "npm:prettier@^3.7.3": "3.7.3",
-    "npm:react-dom@^19.1.2": "19.2.0_react@19.2.0",
-    "npm:react@^19.1.2": "19.2.0",
+    "npm:react-dom@^19.2.3": "19.2.3_react@19.2.3",
+    "npm:react@^19.2.3": "19.2.3",
     "npm:rolldown-vite@latest": "7.2.9_picomatch@4.0.3",
     "npm:tailwindcss@^4.1.17": "4.1.17",
     "npm:vite@*": "6.4.1_picomatch@4.0.3"
@@ -322,7 +322,7 @@
         "qs"
       ]
     },
-    "@inertiajs/react@2.2.19_react@19.2.0_react-dom@19.2.0__react@19.2.0": {
+    "@inertiajs/react@2.2.19_react@19.2.3_react-dom@19.2.3__react@19.2.3": {
       "integrity": "sha512-G70j9tvslirO0MpkkSqR1LQiiWT70IgvMzIaNruRfyJcj8K2yfWrYcf+ym8Ep1YOtRxkbuUqVFF8TXDNACk/4w==",
       "dependencies": [
         "@inertiajs/core",
@@ -1082,7 +1082,7 @@
       "integrity": "sha512-ekilCSN1jwRvIbgeg/57YFh8qQDNbwDb9xT/qu2DAHbFFZUicIl4ygVaAvzveMhMVr3LnpSKTNnwt8PoOfmKhQ==",
       "bin": true
     },
-    "jotai@2.16.0_@types+react@19.2.7_react@19.2.0": {
+    "jotai@2.16.0_@types+react@19.2.7_react@19.2.3": {
       "integrity": "sha512-NmkwPBet0SHQ28GBfEb10sqnbVOYyn6DL4iazZgGRDUKxSWL0iqcm+IK4TqTSFC2ixGk+XX2e46Wbv364a3cKg==",
       "dependencies": [
         "@types/react",
@@ -1309,8 +1309,8 @@
         "unpipe"
       ]
     },
-    "react-dom@19.2.0_react@19.2.0": {
-      "integrity": "sha512-UlbRu4cAiGaIewkPyiRGJk0imDN2T3JjieT6spoL2UeSf5od4n5LB/mQ4ejmxhCFT1tYe8IvaFulzynWovsEFQ==",
+    "react-dom@19.2.3_react@19.2.3": {
+      "integrity": "sha512-yELu4WmLPw5Mr/lmeEpox5rw3RETacE++JgHqQzd2dg+YbJuat3jH4ingc+WPZhxaoFzdv9y33G+F7Nl5O0GBg==",
       "dependencies": [
         "react",
         "scheduler"
@@ -1319,8 +1319,8 @@
     "react-refresh@0.18.0": {
       "integrity": "sha512-QgT5//D3jfjJb6Gsjxv0Slpj23ip+HtOpnNgnb2S5zU3CB26G/IDPGoy4RJB42wzFE46DRsstbW6tKHoKbhAxw=="
     },
-    "react@19.2.0": {
-      "integrity": "sha512-tmbWg6W31tQLeB5cdIBOicJDJRR2KzXsV7uSK9iNfLWQ5bIZfxuPEHp7M8wiHyHnn0DD1i7w3Zmin0FtkrwoCQ=="
+    "react@19.2.3": {
+      "integrity": "sha512-Ku/hhYbVjOQnXDZFv2+RibmLFGwFdeeKHFcOTlrt7xplBnya5OGn/hIRDsqDiSUcfORsDC7MPxwork8jBwsIWA=="
     },
     "rolldown-vite@7.2.9_picomatch@4.0.3": {
       "integrity": "sha512-Y+Q1FpIgAkK2RiAdeS1SxcvDsJaru1JUANFo1aiFFtuGCckhltIowoC/JMU740tFZDTJA5vg5CAl1RzHExNR/w==",
@@ -1565,8 +1565,8 @@
       "npm:minimist@^1.2.8",
       "npm:prettier-plugin-tailwindcss@~0.7.1",
       "npm:prettier@^3.7.3",
-      "npm:react-dom@^19.1.2",
-      "npm:react@^19.1.2",
+      "npm:react-dom@^19.2.3",
+      "npm:react@^19.2.3",
       "npm:rolldown-vite@latest",
       "npm:tailwindcss@^4.1.17"
     ]

@@ -22,8 +22,8 @@
     "minimist": "npm:minimist@^1.2.8",
     "prettier": "npm:prettier@^3.7.3",
     "prettier-plugin-tailwindcss": "npm:prettier-plugin-tailwindcss@^0.7.1",
-    "react": "npm:react@^19.1.2",
-    "react-dom": "npm:react-dom@^19.1.2",
+    "react": "npm:react@^19.2.3",
+    "react-dom": "npm:react-dom@^19.2.3",
     "server": "https://raw.githubusercontent.com/Inertia4J/inertia4j-spring-example/refs/heads/main/src/main/front/server.js",
     "tailwindcss": "npm:tailwindcss@^4.1.17",
     "vite": "npm:rolldown-vite@latest"
