@@ -14,6 +14,14 @@ public record Plan(
         String description) {
 }
 
+record PlanJson(
+        @Id Integer id,
+        String title,
+        String meetAt,
+        String meetTime,
+        String description) {
+}
+
 @Table("plan_participants")
 record PlanParticipant(
         @Id Integer id,

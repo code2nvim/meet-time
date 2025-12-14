@@ -54,8 +54,8 @@ public class PlanController {
         if (Verify.validUser(session).isEmpty()) {
             return inertia.redirect("/");
         }
-        var dateList = planService.planListInMonth(year, month);
-        return inertia.render("Plan/Show", Map.of("dateList", dateList));
+        var planList = planService.planListInDay(year, month, day);
+        return inertia.render("Plan/Show", Map.of("planList", planList));
     }
 
 }
