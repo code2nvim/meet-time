@@ -60,7 +60,7 @@ function Week({ start, month }: WeekProps) {
       {dates.map((date, idx) => (
         <Fragment key={idx}>
           {(start.getMonth() === month || end.getMonth() === month) && (
-            <td className="flex aspect-4/3 w-32 items-center justify-center border p-2">
+            <td className="flex aspect-4/3 w-28 items-center justify-center border p-2">
               {date.getMonth() === month && <DayLink date={date} />}
             </td>
           )}

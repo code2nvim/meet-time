@@ -20,7 +20,7 @@ export default function Index({ localDate, dateList, children }: IndexProps) {
   }, []);
 
   return (
-    <div className="inset-0 flex flex-col items-center gap-1 p-1">
+    <div className="inset-0 pt-24 flex flex-col items-center gap-1">
       <SelectMonth date={date} />
       <Calendar start={start} />
       {children}
