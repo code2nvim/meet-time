@@ -7,6 +7,8 @@ import java.util.Map;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.meet.utils.Verify;
@@ -56,6 +58,16 @@ public class PlanController {
         }
         var planList = planService.planListInDay(year, month, day);
         return inertia.render("Plan/Show", Map.of("planList", planList));
+    }
+
+    @PostMapping("/plan/{year}/{month}/{day}")
+    ResponseEntity<String> planCreate(HttpSession session, @RequestBody PlanJson planJson,
+            @PathVariable int year, @PathVariable int month, @PathVariable int day) {
+        if (Verify.validUser(session).isEmpty()) {
+            return inertia.redirect("/");
+        }
+        planService.savePlan(planJson);
+        return inertia.redirect("/plan/" + year + "/" + month + "/" + day);
     }
 
 }

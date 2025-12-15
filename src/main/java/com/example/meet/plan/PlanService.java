@@ -39,4 +39,15 @@ public class PlanService {
                 .collect(Collectors.toList());
     }
 
+    void savePlan(PlanJson planJson) {
+        var plan = new Plan(
+                null,
+                planJson.title(),
+                planJson.meetAt(),
+                LocalDateTime.parse(planJson.meetTime(),
+                        DateTimeFormatter.ISO_LOCAL_DATE_TIME),
+                planJson.description());
+        planRepository.save(plan);
+    }
+
 }

@@ -1,9 +1,9 @@
 export interface Plan {
-  planId: number;
+  id: number;
   title: string;
   meetAt: string;
   meetTime: Date;
-  desription: string;
+  description: string;
 }
 
 export interface Participant {
