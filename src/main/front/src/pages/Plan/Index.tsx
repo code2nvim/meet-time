@@ -5,7 +5,7 @@ import { formatMonth } from "../../utils/format.ts";
 import { useDateList } from "../../hooks/plan.ts";
 
 interface IndexProps {
-  localDate: string;
+  localDate: Date;
   dateList: string[];
   children: ReactElement;
 }
@@ -44,11 +44,19 @@ function SelectMonth({ date }: SelectMonthProps) {
 
   return (
     <nav className="flex items-center gap-8 p-4 text-2xl">
-      <Link type="button" href={prevRoute} className="rounded-md border-2 p-1">
+      <Link
+        type="button"
+        href={prevRoute}
+        className="rounded-md border-2 border-teal-200 bg-teal-300 p-1"
+      >
         prev
       </Link>
       <h2 className="font-bold">{formatMonth(date)}</h2>
-      <Link type="button" href={nextRoute} className="rounded-md border-2 p-1">
+      <Link
+        type="button"
+        href={nextRoute}
+        className="rounded-md border-2 border-teal-200 bg-teal-300 p-1"
+      >
         next
       </Link>
     </nav>

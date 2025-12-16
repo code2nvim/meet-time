@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -61,12 +62,23 @@ public class PlanController {
     }
 
     @PostMapping("/plan/{year}/{month}/{day}")
-    ResponseEntity<String> planCreate(HttpSession session, @RequestBody PlanJson planJson,
+    ResponseEntity<String> create(HttpSession session, @RequestBody PlanJson planJson,
             @PathVariable int year, @PathVariable int month, @PathVariable int day) {
         if (Verify.validUser(session).isEmpty()) {
             return inertia.redirect("/");
         }
         planService.savePlan(planJson);
+        return inertia.redirect("/plan/" + year + "/" + month + "/" + day);
+    }
+
+    @DeleteMapping("/plan/{year}/{month}/{day}/{id}")
+    ResponseEntity<String> delete(HttpSession session,
+            @PathVariable int year, @PathVariable int month, @PathVariable int day,
+            @PathVariable int id) {
+        if (Verify.validUser(session).isEmpty()) {
+            return inertia.redirect("/");
+        }
+        planService.deletePlan(id);
         return inertia.redirect("/plan/" + year + "/" + month + "/" + day);
     }
 

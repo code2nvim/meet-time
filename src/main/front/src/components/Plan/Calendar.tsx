@@ -10,24 +10,24 @@ export function Calendar({ start }: CalendarProps) {
   const weekStart = new Date(first);
   weekStart.setDate(first.getDate() - first.getDay());
 
-  const weeks = Array.from({ length: 6 }).reduce<Date[]>((prev, _, i) => {
+  const weeks = Array.from({ length: 6 }, (_, i) => {
     const date = new Date(weekStart);
     date.setDate(weekStart.getDate() + i * 7);
-    return [...prev, date];
-  }, []);
+    return date;
+  });
 
   const month = start.getMonth();
 
   return (
     <table className="text-4xl">
       <thead>
-        <tr className="grid grid-cols-7 p-2 text-center">
+        <tr className="grid grid-cols-7 gap-4 p-2 text-center">
           {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
             <th key={day}>{day}</th>
           ))}
         </tr>
       </thead>
-      <tbody>
+      <tbody className="flex flex-col gap-2">
         {weeks.map((start, idx) => (
           <Week key={idx} start={start} month={month} />
         ))}
@@ -56,11 +56,11 @@ function Week({ start, month }: WeekProps) {
   end.setDate(start.getDate() + 6);
 
   return (
-    <tr className="grid grid-cols-7">
+    <tr className="grid grid-cols-7 gap-2">
       {dates.map((date, idx) => (
         <Fragment key={idx}>
           {(start.getMonth() === month || end.getMonth() === month) && (
-            <td className="flex aspect-4/3 w-28 items-center justify-center border p-2">
+            <td className="flex aspect-4/3 w-28 items-center justify-center rounded-md border-2 border-teal-200 bg-teal-300">
               {date.getMonth() === month && <DayLink date={date} />}
             </td>
           )}

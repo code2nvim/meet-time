@@ -21,7 +21,7 @@ export function DayLink({ date }: DayLinkProps) {
   return (
     <Link href={plan}>
       {dayList.includes(date.getDate())
-        ? <span className="bg-teal-300 p-2">{formatDay(date)}</span>
+        ? <span className="rounded-md bg-teal-100 p-1">{formatDay(date)}</span>
         : (
           formatDay(date)
         )}

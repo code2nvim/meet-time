@@ -50,4 +50,8 @@ public class PlanService {
         planRepository.save(plan);
     }
 
+    void deletePlan(int id) {
+        planRepository.deleteById(id);
+    }
+
 }

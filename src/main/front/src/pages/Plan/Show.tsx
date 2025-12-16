@@ -20,19 +20,19 @@ export default function Show({ planList }: ShowProps) {
       onClick={(e) => e.target === e.currentTarget && gotoList()}
       className="absolute inset-0 flex flex-col items-center justify-center bg-black/50"
     >
-      <section className="size-4/5 flex flex-col rounded-md bg-teal-400">
-        <nav className="h-10 w-full grid grid-cols-2">
+      <section className="flex size-4/5 flex-col rounded-md bg-teal-400">
+        <nav className="grid h-10 w-full grid-cols-2 gap-2 p-2 text-xl">
           <button
             type="button"
             onClick={() => setCurr("list")}
-            className="grow border border-teal-600"
+            className="grow rounded-md border border-teal-600"
           >
             List
           </button>
           <button
             type="button"
             onClick={() => setCurr("create")}
-            className="grow border border-teal-600"
+            className="grow rounded-md border border-teal-600"
           >
             Create
           </button>
