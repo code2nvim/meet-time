@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { usePosition } from "../hooks/mouse.ts";
 
 interface Line {
   from: number;
@@ -26,11 +27,14 @@ export function Lines({ lines }: LinesProps) {
   );
 }
 
+const HEIGHT = 95;
+
 /*
  * TODO: change height dynamic
  */
 export function Tanuki() {
-  const [height, setHeight] = useState(95);
+  const [height, setHeight] = useState(HEIGHT);
+  const { x, y } = usePosition();
 
   const lines: Line[][] = [
     [{ from: height * 0, height: height * 0.35 }],
@@ -69,10 +73,25 @@ export function Tanuki() {
 
   const mirror = lines.slice().reverse();
 
+  console.log(y);
+
   return (
-    <section className="flex aspect-4/3 w-11/12 items-center justify-center gap-3.5">
-      {lines.map((elem, key) => <Lines key={key} lines={elem} />)}
-      {mirror.map((elem, key) => <Lines key={key} lines={elem} />)}
-    </section>
+    <>
+      <section
+        onMouseMove={() => setHeight(HEIGHT * (1.0 - y))}
+        className="flex aspect-4/3 w-11/12 items-center justify-center gap-3.5"
+        style={{
+          transform: `
+          perspective(100px)
+          rotateY(${(x) * 10}deg)
+          rotateX(${(y) * -10}deg)
+        `,
+          transition: "transform 0.1s linear",
+        }}
+      >
+        {lines.map((elem, key) => <Lines key={key} lines={elem} />)}
+        {mirror.map((elem, key) => <Lines key={key} lines={elem} />)}
+      </section>
+    </>
   );
 }
