@@ -3,7 +3,6 @@ package com.example.meet.plan;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -22,7 +21,7 @@ public class PlanService {
         var list = planRepository.findByMeetTimeBetween(start, end);
         return list.stream()
                 .map(plan -> plan.meetTime().format(DateTimeFormatter.ISO_LOCAL_DATE))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     List<PlanJson> planListInDay(int year, int month, int day) {
@@ -36,7 +35,7 @@ public class PlanService {
                         plan.meetAt(),
                         plan.meetTime().format(DateTimeFormatter.ISO_LOCAL_DATE),
                         plan.description()))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     void savePlan(PlanJson planJson) {
