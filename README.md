@@ -8,3 +8,21 @@
 ## React + Spring Boot - bridged by Inertia.js with no API required!!!
 
 The React frontend code is located in src/main/front
+
+## Build the project
+
+### Dev mode
+
+```
+init.sh dev
+
+SERVER_SSL_ENABLED=false mvnw spring-boot:run
+```
+
+### Build mode
+
+```
+init.sh build
+
+SERVER_ADDRESS=127.0.0.1 mvnw spring-boot:run
+```
